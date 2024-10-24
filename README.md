@@ -15,15 +15,8 @@ import { HttpStatusCode, httpStatusMessage } from 'ts-http-codes';
 
 console.log(httpStatusMessage(200)); // OK
 console.log(httpStatusMessage(HttpStatusCode.Ok_200)); // OK
-```
-
-### Code
-
-```typescript
-import { HttpStatusMessage, httpStatusCode } from 'ts-http-codes';
-
-console.log(httpStatusCode('OK')); // 200
-console.log(httpStatusCode(HttpStatusMessage.Ok_200)); // 200
+console.log(httpStatusMessage(999)); // throws Error: Unknown HTTP status code: 999
+console.log(findHttpStatusMessage(999)); // undefined
 ```
 
 ### Category
@@ -33,6 +26,8 @@ import { HttpStatusCode, httpStatusCategory } from 'ts-http-codes';
 
 console.log(httpStatusCategory(200)); // Success
 console.log(httpStatusCategory(HttpStatusCode.Ok_200)); // Success
+console.log(httpStatusCategory(999)); // throws Error: Unknown HTTP status code: 999
+console.log(findHttpStatusCategory(999)); // undefined
 ```
 
 ## HTTP Status Codes

@@ -1,3 +1,8 @@
+/**
+ * A status code is a piece of information returned by a web server in the HTTP response header.
+ * The status code indicates the success or failure of the request.
+ * The HTTP status code is a three-digit number that provides Web browsers with a summary of the request outcome.
+ */
 export enum HttpStatusCode {
     /**
      * This interim response indicates that everything so far is OK and that the client should continue with the request or ignore it if it is already finished.
@@ -121,7 +126,7 @@ export enum HttpStatusCode {
      *
      * @see {@link https://tools.ietf.org/html/rfc7231#section-6.4.3}
      */
-    MovedTemporarily_302 = 302,
+    Found_302 = 302,
 
     /**
      * Server sent this response to directing client to get requested resource to another URI with an GET request.
@@ -255,14 +260,14 @@ export enum HttpStatusCode {
      *
      * @see {@link https://tools.ietf.org/html/rfc7231#section-6.5.11}
      */
-    RequestEntityTooLarge_413 = 413,
+    PayloadTooLarge_413 = 413,
 
     /**
      * The URI requested by the client is longer than the server is willing to interpret.
      *
      * @see {@link https://tools.ietf.org/html/rfc7231#section-6.5.12}
      */
-    RequestURITooLong_414 = 414,
+    URITooLong_414 = 414,
 
     /**
      * The media format of the requested data is not supported by the server, so the server is rejecting the request.
@@ -276,7 +281,7 @@ export enum HttpStatusCode {
      *
      * @see {@link https://tools.ietf.org/html/rfc7233#section-4.4}
      */
-    RequestedRangeNotSatisfiable_416 = 416,
+    RangeNotSatisfiable_416 = 416,
 
     /**
      * This response code means the expectation indicated by the Expect request header field can't be met by the server.
@@ -426,6 +431,18 @@ export enum HttpStatusCode {
     LoopDetected_508 = 508,
 
     /**
+     * A 509 status code signifies that a website has exceeded its bandwidth limit, making it potentially inaccessible.
+     */
+    BandwidthLimitExceeded_509 = 509,
+
+    /**
+     * The policy for accessing the resource has not been met in the request. The server should send back all the information necessary for the client to issue an extended request.
+     *
+     * @see {@link https://tools.ietf.org/html/rfc2774#section-7}
+     */
+    NotExtended_510 = 510,
+
+    /**
      * The 511 status code indicates that the client needs to authenticate to gain network access.
      *
      * @see {@link https://tools.ietf.org/html/rfc6585#section-6}
@@ -433,6 +450,42 @@ export enum HttpStatusCode {
     NetworkAuthenticationRequired_511 = 511,
 }
 
+
+/**
+ * Status codes can be grouped into categories based on the first digit of the status code.
+ */
+export enum HttpStatusCategory {
+    /**
+     * The request was received, continuing process
+     */
+    Informational_1xx = 'Informational',
+
+    /**
+     * The request was successfully received, understood, and accepted
+     */
+    Success_2xx = 'Success',
+
+    /**
+     * Further action needs to be taken in order to complete the request
+     */
+    Redirection_3xx = 'Redirection',
+
+    /**
+     * The request contains bad syntax or cannot be fulfilled
+     */
+    ClientError_4xx = 'Client Error',
+
+    /**
+     * The server failed to fulfill an apparently valid request
+     */
+    ServerError_5xx = 'Server Error',
+}
+
+/**
+ * A more human-readable representation of the HTTP status code.
+ *
+ * @see HttpStatusCode
+ */
 export enum HttpStatusMessage {
     /**
      * This interim response indicates that everything so far is OK and that the client should continue with the request or ignore it if it is already finished.
@@ -556,7 +609,7 @@ export enum HttpStatusMessage {
      *
      * @see {@link https://tools.ietf.org/html/rfc7231#section-6.4.3}
      */
-    MovedTemporarily_302 = 'Moved Temporarily',
+    Found_302 = 'Found',
 
     /**
      * Server sent this response to directing client to get requested resource to another URI with an GET request.
@@ -690,14 +743,14 @@ export enum HttpStatusMessage {
      *
      * @see {@link https://tools.ietf.org/html/rfc7231#section-6.5.11}
      */
-    RequestEntityTooLarge_413 = 'Request Entity Too Large',
+    PayloadTooLarge_413 = 'Payload Too Large',
 
     /**
      * The URI requested by the client is longer than the server is willing to interpret.
      *
      * @see {@link https://tools.ietf.org/html/rfc7231#section-6.5.12}
      */
-    RequestURITooLong_414 = 'Request-URI Too Long',
+    URITooLong_414 = 'URI Too Long',
 
     /**
      * The media format of the requested data is not supported by the server, so the server is rejecting the request.
@@ -711,7 +764,7 @@ export enum HttpStatusMessage {
      *
      * @see {@link https://tools.ietf.org/html/rfc7233#section-4.4}
      */
-    RequestedRangeNotSatisfiable_416 = 'Requested Range Not Satisfiable',
+    RangeNotSatisfiable_416 = 'Range Not Satisfiable',
 
     /**
      * This response code means the expectation indicated by the Expect request header field can't be met by the server.
@@ -861,6 +914,18 @@ export enum HttpStatusMessage {
     LoopDetected_508 = 'Loop Detected',
 
     /**
+     * A 509 status code signifies that a website has exceeded its bandwidth limit, making it potentially inaccessible.
+     */
+    BandwidthLimitExceeded_509 = 'Bandwidth Limit Exceeded',
+
+    /**
+     * The policy for accessing the resource has not been met in the request. The server should send back all the information necessary for the client to issue an extended request.
+     *
+     * @see {@link https://tools.ietf.org/html/rfc2774#section-7}
+     */
+    NotExtended_510 = 'Not Extended',
+
+    /**
      * The 511 status code indicates that the client needs to authenticate to gain network access.
      *
      * @see {@link https://tools.ietf.org/html/rfc6585#section-6}
@@ -868,43 +933,18 @@ export enum HttpStatusMessage {
     NetworkAuthenticationRequired_511 = 'Network Authentication Required',
 }
 
-export enum HttpStatusCategory {
-    /**
-     * The request was received, continuing process
-     */
-    Informational_1xx = 'Informational',
-
-    /**
-     * The request was successfully received, understood, and accepted
-     */
-    Success_2xx = 'Success',
-
-    /**
-     * Further action needs to be taken in order to complete the request
-     */
-    Redirection_3xx = 'Redirection',
-
-    /**
-     * The request contains bad syntax or cannot be fulfilled
-     */
-    ClientError_4xx = 'Client Error',
-
-    /**
-     * The server failed to fulfill an apparently valid request
-     */
-    ServerError_5xx = 'Server Error',
-}
-
 
 /**
  * Returns the category of the HTTP status code.
  * Categories are based on the first digit of the status code,
- * e.g. Informational_1xx, Success_2xx, Redirection_3xx, ClientError_4xx, ServerError_5xx.
+ * e.g. `Informational_1xx`, `Success_2xx`, `Redirection_3xx`, `ClientError_4xx`, `ServerError_5xx`.
  *
  * @param code The HTTP status code
  * @returns The category of the HTTP status code
+ * @throws If the status code is not known
+ * @see findHttpStatusCategory for a version that returns `undefined` instead of throwing an error
  */
-export function httpStatusCategory(code: HttpStatusCode): HttpStatusCategory {
+export function httpStatusCategory(code: number): HttpStatusCategory {
     switch (code) {
         case HttpStatusCode.Continue_100:
         case HttpStatusCode.SwitchingProtocols_101:
@@ -924,7 +964,7 @@ export function httpStatusCategory(code: HttpStatusCode): HttpStatusCategory {
             return HttpStatusCategory.Success_2xx;
         case HttpStatusCode.MultipleChoices_300:
         case HttpStatusCode.MovedPermanently_301:
-        case HttpStatusCode.MovedTemporarily_302:
+        case HttpStatusCode.Found_302:
         case HttpStatusCode.SeeOther_303:
         case HttpStatusCode.NotModified_304:
         case HttpStatusCode.UseProxy_305:
@@ -944,10 +984,10 @@ export function httpStatusCategory(code: HttpStatusCode): HttpStatusCategory {
         case HttpStatusCode.Gone_410:
         case HttpStatusCode.LengthRequired_411:
         case HttpStatusCode.PreconditionFailed_412:
-        case HttpStatusCode.RequestEntityTooLarge_413:
-        case HttpStatusCode.RequestURITooLong_414:
+        case HttpStatusCode.PayloadTooLarge_413:
+        case HttpStatusCode.URITooLong_414:
         case HttpStatusCode.UnsupportedMediaType_415:
-        case HttpStatusCode.RequestedRangeNotSatisfiable_416:
+        case HttpStatusCode.RangeNotSatisfiable_416:
         case HttpStatusCode.ExpectationFailed_417:
         case HttpStatusCode.ImATeapot_418:
         case HttpStatusCode.MisdirectedRequest_421:
@@ -970,8 +1010,12 @@ export function httpStatusCategory(code: HttpStatusCode): HttpStatusCategory {
         case HttpStatusCode.VariantAlsoNegotiates_506:
         case HttpStatusCode.InsufficientStorage_507:
         case HttpStatusCode.LoopDetected_508:
+        case HttpStatusCode.BandwidthLimitExceeded_509:
+        case HttpStatusCode.NotExtended_510:
         case HttpStatusCode.NetworkAuthenticationRequired_511:
             return HttpStatusCategory.ServerError_5xx;
+        default:
+            throw new Error(`Unknown HTTP status code: ${code}`);
     }
 }
 
@@ -980,8 +1024,10 @@ export function httpStatusCategory(code: HttpStatusCode): HttpStatusCategory {
  *
  * @param code The HTTP status code
  * @returns The status message matching the HTTP status code
+ * @throws If the status code is not known
+ * @see findHttpStatusMessage for a version that returns `undefined` instead of throwing an error
  */
-export function httpStatusMesssage(code: HttpStatusCode): string {
+export function httpStatusMessage(code: number): HttpStatusMessage {
     switch (code) {
         case HttpStatusCode.Continue_100:
             return HttpStatusMessage.Continue_100;
@@ -1015,8 +1061,8 @@ export function httpStatusMesssage(code: HttpStatusCode): string {
             return HttpStatusMessage.MultipleChoices_300;
         case HttpStatusCode.MovedPermanently_301:
             return HttpStatusMessage.MovedPermanently_301;
-        case HttpStatusCode.MovedTemporarily_302:
-            return HttpStatusMessage.MovedTemporarily_302;
+        case HttpStatusCode.Found_302:
+            return HttpStatusMessage.Found_302;
         case HttpStatusCode.SeeOther_303:
             return HttpStatusMessage.SeeOther_303;
         case HttpStatusCode.NotModified_304:
@@ -1053,14 +1099,14 @@ export function httpStatusMesssage(code: HttpStatusCode): string {
             return HttpStatusMessage.LengthRequired_411;
         case HttpStatusCode.PreconditionFailed_412:
             return HttpStatusMessage.PreconditionFailed_412;
-        case HttpStatusCode.RequestEntityTooLarge_413:
-            return HttpStatusMessage.RequestEntityTooLarge_413;
-        case HttpStatusCode.RequestURITooLong_414:
-            return HttpStatusMessage.RequestURITooLong_414;
+        case HttpStatusCode.PayloadTooLarge_413:
+            return HttpStatusMessage.PayloadTooLarge_413;
+        case HttpStatusCode.URITooLong_414:
+            return HttpStatusMessage.URITooLong_414;
         case HttpStatusCode.UnsupportedMediaType_415:
             return HttpStatusMessage.UnsupportedMediaType_415;
-        case HttpStatusCode.RequestedRangeNotSatisfiable_416:
-            return HttpStatusMessage.RequestedRangeNotSatisfiable_416;
+        case HttpStatusCode.RangeNotSatisfiable_416:
+            return HttpStatusMessage.RangeNotSatisfiable_416;
         case HttpStatusCode.ExpectationFailed_417:
             return HttpStatusMessage.ExpectationFailed_417;
         case HttpStatusCode.ImATeapot_418:
@@ -1103,140 +1149,45 @@ export function httpStatusMesssage(code: HttpStatusCode): string {
             return HttpStatusMessage.InsufficientStorage_507;
         case HttpStatusCode.LoopDetected_508:
             return HttpStatusMessage.LoopDetected_508;
+        case HttpStatusCode.BandwidthLimitExceeded_509:
+            return HttpStatusMessage.BandwidthLimitExceeded_509;
+        case HttpStatusCode.NotExtended_510:
+            return HttpStatusMessage.NotExtended_510;
         case HttpStatusCode.NetworkAuthenticationRequired_511:
             return HttpStatusMessage.NetworkAuthenticationRequired_511;
+        default:
+            throw new Error(`Unknown HTTP status code: ${code}`);
     }
 }
 
+
 /**
- * Returns the status code of a HTTP status message, e.g. 200 for "OK".
+ * Checks if the given status code is a valid HTTP status code.
  *
- * @param message The HTTP status message
- * @returns The status code matching the HTTP status message
+ * @param code The code to check
+ * @returns Whether the code is a valid HTTP status code
  */
-export function httpStatusCode(message: HttpStatusMessage): HttpStatusCode {
-    switch (message) {
-        case HttpStatusMessage.Continue_100:
-            return HttpStatusCode.Continue_100;
-        case HttpStatusMessage.SwitchingProtocols_101:
-            return HttpStatusCode.SwitchingProtocols_101;
-        case HttpStatusMessage.Processing_102:
-            return HttpStatusCode.Processing_102;
-        case HttpStatusMessage.EarlyHints_103:
-            return HttpStatusCode.EarlyHints_103;
-        case HttpStatusMessage.Ok_200:
-            return HttpStatusCode.Ok_200;
-        case HttpStatusMessage.Created_201:
-            return HttpStatusCode.Created_201;
-        case HttpStatusMessage.Accepted_202:
-            return HttpStatusCode.Accepted_202;
-        case HttpStatusMessage.NonAuthoritativeInformation_203:
-            return HttpStatusCode.NonAuthoritativeInformation_203;
-        case HttpStatusMessage.NoContent_204:
-            return HttpStatusCode.NoContent_204;
-        case HttpStatusMessage.ResetContent_205:
-            return HttpStatusCode.ResetContent_205;
-        case HttpStatusMessage.PartialContent_206:
-            return HttpStatusCode.PartialContent_206;
-        case HttpStatusMessage.MultiStatus_207:
-            return HttpStatusCode.MultiStatus_207;
-        case HttpStatusMessage.AlreadyReported_208:
-            return HttpStatusCode.AlreadyReported_208;
-        case HttpStatusMessage.IMUsed_226:
-            return HttpStatusCode.IMUsed_226;
-        case HttpStatusMessage.MultipleChoices_300:
-            return HttpStatusCode.MultipleChoices_300;
-        case HttpStatusMessage.MovedPermanently_301:
-            return HttpStatusCode.MovedPermanently_301;
-        case HttpStatusMessage.MovedTemporarily_302:
-            return HttpStatusCode.MovedTemporarily_302;
-        case HttpStatusMessage.SeeOther_303:
-            return HttpStatusCode.SeeOther_303;
-        case HttpStatusMessage.NotModified_304:
-            return HttpStatusCode.NotModified_304;
-        case HttpStatusMessage.UseProxy_305:
-            return HttpStatusCode.UseProxy_305;
-        case HttpStatusMessage.TemporaryRedirect_307:
-            return HttpStatusCode.TemporaryRedirect_307;
-        case HttpStatusMessage.PermanentRedirect_308:
-            return HttpStatusCode.PermanentRedirect_308;
-        case HttpStatusMessage.BadRequest_400:
-            return HttpStatusCode.BadRequest_400;
-        case HttpStatusMessage.Unauthorized_401:
-            return HttpStatusCode.Unauthorized_401;
-        case HttpStatusMessage.PaymentRequired_402:
-            return HttpStatusCode.PaymentRequired_402;
-        case HttpStatusMessage.Forbidden_403:
-            return HttpStatusCode.Forbidden_403;
-        case HttpStatusMessage.NotFound_404:
-            return HttpStatusCode.NotFound_404;
-        case HttpStatusMessage.MethodNotAllowed_405:
-            return HttpStatusCode.MethodNotAllowed_405;
-        case HttpStatusMessage.NotAcceptable_406:
-            return HttpStatusCode.NotAcceptable_406;
-        case HttpStatusMessage.ProxyAuthenticationRequired_407:
-            return HttpStatusCode.ProxyAuthenticationRequired_407;
-        case HttpStatusMessage.RequestTimeout_408:
-            return HttpStatusCode.RequestTimeout_408;
-        case HttpStatusMessage.Conflict_409:
-            return HttpStatusCode.Conflict_409;
-        case HttpStatusMessage.Gone_410:
-            return HttpStatusCode.Gone_410;
-        case HttpStatusMessage.LengthRequired_411:
-            return HttpStatusCode.LengthRequired_411;
-        case HttpStatusMessage.PreconditionFailed_412:
-            return HttpStatusCode.PreconditionFailed_412;
-        case HttpStatusMessage.RequestEntityTooLarge_413:
-            return HttpStatusCode.RequestEntityTooLarge_413;
-        case HttpStatusMessage.RequestURITooLong_414:
-            return HttpStatusCode.RequestURITooLong_414;
-        case HttpStatusMessage.UnsupportedMediaType_415:
-            return HttpStatusCode.UnsupportedMediaType_415;
-        case HttpStatusMessage.RequestedRangeNotSatisfiable_416:
-            return HttpStatusCode.RequestedRangeNotSatisfiable_416;
-        case HttpStatusMessage.ExpectationFailed_417:
-            return HttpStatusCode.ExpectationFailed_417;
-        case HttpStatusMessage.ImATeapot_418:
-            return HttpStatusCode.ImATeapot_418;
-        case HttpStatusMessage.MisdirectedRequest_421:
-            return HttpStatusCode.MisdirectedRequest_421;
-        case HttpStatusMessage.UnprocessableEntity_422:
-            return HttpStatusCode.UnprocessableEntity_422;
-        case HttpStatusMessage.Locked_423:
-            return HttpStatusCode.Locked_423;
-        case HttpStatusMessage.FailedDependency_424:
-            return HttpStatusCode.FailedDependency_424;
-        case HttpStatusMessage.TooEarly_425:
-            return HttpStatusCode.TooEarly_425;
-        case HttpStatusMessage.UpgradeRequired_426:
-            return HttpStatusCode.UpgradeRequired_426;
-        case HttpStatusMessage.PreconditionRequired_428:
-            return HttpStatusCode.PreconditionRequired_428;
-        case HttpStatusMessage.TooManyRequests_429:
-            return HttpStatusCode.TooManyRequests_429;
-        case HttpStatusMessage.RequestHeaderFieldsTooLarge_431:
-            return HttpStatusCode.RequestHeaderFieldsTooLarge_431;
-        case HttpStatusMessage.UnavailableForLegalReasons_451:
-            return HttpStatusCode.UnavailableForLegalReasons_451;
-        case HttpStatusMessage.InternalServerError_500:
-            return HttpStatusCode.InternalServerError_500;
-        case HttpStatusMessage.NotImplemented_501:
-            return HttpStatusCode.NotImplemented_501;
-        case HttpStatusMessage.BadGateway_502:
-            return HttpStatusCode.BadGateway_502;
-        case HttpStatusMessage.ServiceUnavailable_503:
-            return HttpStatusCode.ServiceUnavailable_503;
-        case HttpStatusMessage.GatewayTimeout_504:
-            return HttpStatusCode.GatewayTimeout_504;
-        case HttpStatusMessage.HTTPVersionNotSupported_505:
-            return HttpStatusCode.HTTPVersionNotSupported_505;
-        case HttpStatusMessage.VariantAlsoNegotiates_506:
-            return HttpStatusCode.VariantAlsoNegotiates_506;
-        case HttpStatusMessage.InsufficientStorage_507:
-            return HttpStatusCode.InsufficientStorage_507;
-        case HttpStatusMessage.LoopDetected_508:
-            return HttpStatusCode.LoopDetected_508;
-        case HttpStatusMessage.NetworkAuthenticationRequired_511:
-            return HttpStatusCode.NetworkAuthenticationRequired_511;
-    }
+export function isHttpStatusCode(code: number): code is HttpStatusCode {
+    return Object.values(HttpStatusCode).includes(code);
 }
+
+/**
+ * Returns the status message of a HTTP status code or undefined if the status code is unknown.
+ *
+ * @param code The HTTP status code
+ * @returns The status message matching the HTTP status code if any
+ */
+export function findHttpStatusMessage(code: number): HttpStatusMessage | undefined {
+    return isHttpStatusCode(code) ? httpStatusMessage(code) : undefined;
+}
+
+/**
+ * Returns the category of the HTTP status code or undefined if the code is not a valid HTTP status code.
+ *
+ * @param code The HTTP status code
+ * @returns The category of the HTTP status code if any
+ */
+export function findHttpStatusCategory(code: number): HttpStatusCategory | undefined {
+    return isHttpStatusCode(code) ? httpStatusCategory(code) : undefined;
+}
+

@@ -1,6 +1,6 @@
 {
-    "name": "http-code-enum",
-    "version": "0.1.0",
+    "name": "ts-http-codes",
+    "version": "0.1.1",
     "description": "HTTP status codes, categories and messages",
     "type": "module",
     "scripts": {

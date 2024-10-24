@@ -1,7 +1,7 @@
-# http-message-codes
+# ts-http-codes
 
 ```typescript
-import { HttpCode, HttpMessage } from 'http-message-codes';
+import { HttpStatusCode, HttpStatusMessage } from 'ts-http-codes';
 ```
 
 ## HTTP Status Codes
@@ -150,7 +150,7 @@ export enum HttpStatusCategory {
 Convert a status code to a message:
 
 ```typescript
-import { httpStatusMessage } from 'http-codes';
+import { httpStatusMessage } from 'ts-http-codes';
 
 console.log(httpStatusMessage(200)); // OK
 console.log(httpStatusMessage(HttpCode.Ok_200)); // OK
@@ -159,7 +159,7 @@ console.log(httpStatusMessage(HttpCode.Ok_200)); // OK
 Convert a message to a status code:
 
 ```typescript
-import { httpStatusCode } from 'http-codes';
+import { httpStatusCode } from 'ts-http-codes';
 
 console.log(httpStatusCode('OK')); // 200
 console.log(httpStatusCode(HttpMessage.Ok_200)); // 200
@@ -168,7 +168,7 @@ console.log(httpStatusCode(HttpMessage.Ok_200)); // 200
 Get the category of a status code:
 
 ```typescript
-import { httpStatusCategory } from 'http-codes';
+import { httpStatusCategory } from 'ts-http-codes';
 
 console.log(httpStatusCategory(200)); // Success
 console.log(httpStatusCategory(HttpCode.Ok_200)); // Success

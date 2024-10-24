@@ -1,7 +1,38 @@
 # ts-http-codes
 
+## Installation
+
+```bash
+npm install ts-http-codes
+```
+
+## Usage
+
+### Message
+
 ```typescript
-import { HttpStatusCode, HttpStatusMessage } from 'ts-http-codes';
+import { HttpStatusCode, httpStatusMessage } from 'ts-http-codes';
+
+console.log(httpStatusMessage(200)); // OK
+console.log(httpStatusMessage(HttpStatusCode.Ok_200)); // OK
+```
+
+### Code
+
+```typescript
+import { HttpStatusMessage, httpStatusCode } from 'ts-http-codes';
+
+console.log(httpStatusCode('OK')); // 200
+console.log(httpStatusCode(HttpStatusMessage.Ok_200)); // 200
+```
+
+### Category
+
+```typescript
+import { HttpStatusCode, httpStatusCategory } from 'ts-http-codes';
+
+console.log(httpStatusCategory(200)); // Success
+console.log(httpStatusCategory(HttpStatusCode.Ok_200)); // Success
 ```
 
 ## HTTP Status Codes
@@ -145,31 +176,4 @@ export enum HttpStatusCategory {
     ClientError_4xx = 'Client Error',
     ServerError_5xx = 'Server Error',
 }
-```
-
-Convert a status code to a message:
-
-```typescript
-import { httpStatusMessage } from 'ts-http-codes';
-
-console.log(httpStatusMessage(200)); // OK
-console.log(httpStatusMessage(HttpCode.Ok_200)); // OK
-```
-
-Convert a message to a status code:
-
-```typescript
-import { httpStatusCode } from 'ts-http-codes';
-
-console.log(httpStatusCode('OK')); // 200
-console.log(httpStatusCode(HttpMessage.Ok_200)); // 200
-```
-
-Get the category of a status code:
-
-```typescript
-import { httpStatusCategory } from 'ts-http-codes';
-
-console.log(httpStatusCategory(200)); // Success
-console.log(httpStatusCategory(HttpCode.Ok_200)); // Success
 ```

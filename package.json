@@ -1,8 +1,12 @@
 {
     "name": "ts-http-codes",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "HTTP status codes, categories and messages",
     "type": "module",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/freehour/ts-http-codes.git"
+    },
     "scripts": {
         "lint": "eslint . --ext ts --report-unused-disable-directives --max-warnings 0",
         "build": "tsc && vite build"

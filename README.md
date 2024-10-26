@@ -1,5 +1,7 @@
 # ts-http-codes
 
+Enum of HTTP status codes, messages and categories for TypeScript.
+
 ## Installation
 
 ```bash

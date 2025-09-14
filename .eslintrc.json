@@ -10,7 +10,6 @@
     },
     "plugins": [
         "@stylistic/js",
-        "@stylistic/jsx",
         "@stylistic/plus",
         "@stylistic/ts",
         "@typescript-eslint",
@@ -20,7 +19,6 @@
     "extends": [
         "./eslint/v8/.eslintrc.json",
         "./eslint/v8/@stylistic/js/.eslintrc.json",
-        "./eslint/v8/@stylistic/jsx/.eslintrc.json",
         "./eslint/v8/@stylistic/plus/.eslintrc.json",
         "./eslint/v8/@stylistic/ts/.eslintrc.json",
         "./eslint/v8/@typescript-eslint/.eslintrc.json",
